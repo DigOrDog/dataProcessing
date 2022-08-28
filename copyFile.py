@@ -55,7 +55,7 @@ def split_train_valid(train_data_path, valid_data_path, train_size):
 
     print(len(img_name), len(label_name))
 
-
+#72
 def delete_some_category(origin_path, save_path, category_name):
     for _, _, files in os.walk(origin_path):
         cnt = 0
@@ -185,12 +185,30 @@ def copy_parallel_files(target_path, origin_path, new_path):
             print(str(index) + "completed")
 
 
+def update_data(scrollbar_path, origin_path=r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\xmls'):
+    for _, _, files in os.walk(scrollbar_path):
+        for file_name in files:
+            try:
+                tree = ET.parse(os.path.join(origin_path, file_name))
+            except:
+                continue
+            root = tree.getroot()
+            for thing in ET.parse(os.path.join(scrollbar_path, file_name)).getroot().findall('object'):
+                root.append(thing)
+            tree.write(os.path.join(origin_path, file_name))
+
+
 if __name__ == '__main__':
-    according_to_file_to_add_scrollbar(target_path=r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\experiment\latestData\valid\Annotations',
-                                       to_add_objects_path=r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\experiment\scrollBarExperiment\scrollBarData\valid\Annotations')
-    according_to_file_to_add_scrollbar(
-        target_path=r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\experiment\latestData\test\Annotations',
-        to_add_objects_path=r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\experiment\scrollBarExperiment\scrollBarData\test\Annotations')
+    # delete_some_category(r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\experiment\latestData\test\Annotations',
+    #                      r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\experiment\latestData\test\Annotations',
+    #                      'ScrollBar')
+    # remove(r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\xmls', 0, 5000)
+    # update_data(r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\experiment\scrollBarExperiment\scrollBarData\valid\Annotations')
+    # according_to_file_to_add_scrollbar(target_path=r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\experiment\latestData\valid\Annotations',
+    #                                    to_add_objects_path=r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\experiment\scrollBarExperiment\scrollBarData\valid\Annotations')
+    # according_to_file_to_add_scrollbar(
+    #     target_path=r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\experiment\latestData\test\Annotations',
+    #     to_add_objects_path=r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\experiment\scrollBarExperiment\scrollBarData\test\Annotations')
     # copy_parallel_files(
     #     target_path=r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\experiment\myData\test\images',
     #     origin_path=r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\rawImages',
@@ -210,9 +228,9 @@ if __name__ == '__main__':
     # duplicate_remove(r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\xmls\1060.xml')
     # test_find_findall()
     # test_set()
-    # add_objects(r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\copy\g.xml',
-    #             r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\xmls',
-    #             1423, 1531)
+    # add_objects(r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\secondDataset\copy\a.xml',
+    #             r'F:\sourcesStudy\master\datasetProduce\manual\newVersion\some\secondDataset\xmls',
+    #             1852, 1868)
     # 7.xml~310.xml
     # category_name = ['ScrollBar']
     # # text = 'Clickable'

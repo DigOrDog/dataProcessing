@@ -2,8 +2,8 @@ import os
 import xml.etree.ElementTree as ET
 
 # classes = ['ScrollBar']
-classes = ['Clickable', 'Input', 'ScrollBar']
-
+# classes = ['Clickable', 'Input', 'ScrollBar']
+classes = ['Clickable', 'Input']
 
 # 将x1, y1, x2, y2转换成yolov5所需要的x, y, w, h格式
 def xyxy2xywh(size, box):
